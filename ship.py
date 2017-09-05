@@ -1,4 +1,5 @@
 import pygame
+from os.path import join
 
 from vector import Vector
 from bullet import Bullet
@@ -10,7 +11,7 @@ class Ship():
         self.screen = screen
         
         # Load image, get surface and rect
-        self.image = pygame.image.load('images/ship.png')
+        self.image = pygame.image.load(join('images', 'ship.png'))
         self.surface = self.basesurface = pygame.Surface((40, 62))
         self.basesurface.blit(self.image, (0, 0))
         self.rect = self.basesurface.get_rect()

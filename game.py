@@ -22,7 +22,7 @@ def run_game():
     bullets = Group()
     enemies = Group()
     obstacles = Group()
-    mine = Mine(screen, Vector(40, 40))
+    mine = Mine(screen, Vector(40, 40), ship)
 
     # Main game loop
     while True:

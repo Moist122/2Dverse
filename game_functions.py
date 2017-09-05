@@ -56,7 +56,8 @@ def update_objects(ship, bullets, screen, mine):
     ship.move()
     ship.cooldowns()
     bullets.update()
-    mine.move(ship)
+    mine.move()
+    mine.cooldowns()
 
     # Remove bullets that left the screen
     for bullet in bullets.copy():
