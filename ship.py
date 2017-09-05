@@ -44,6 +44,7 @@ class Ship():
         self.speed_limit = 10 # Not implemented
         self.bullet_speed = 3
         self.movement_cd = 30
+        self.turning_cd = 0
 
         # Gameplay variables
         self.hp = 100
@@ -87,11 +88,11 @@ class Ship():
         
         if not self.turning_actual_cd:
             if self.rotating_left:
-                self.rotate(90)
-                self.turning_actual_cd = self.movement_cd
+                self.rotate(3)
+                self.turning_actual_cd = self.turning_cd
             if self.rotating_right:
-                self.rotate(-90)
-                self.turning_actual_cd = self.movement_cd
+                self.rotate(-3)
+                self.turning_actual_cd = self.turning_cd
 
     def move(self):
         '''Move the ship by the amount of speed.'''
@@ -103,7 +104,7 @@ class Ship():
         '''Rotate the ship around it's center by angle in degrees.'''
         self.rotation += angle
         self.direction.rotate(angle)
-        self.surface = pygame.transform.rotate(self.basesurface, self.rotation)
+        self.surface = pygame.transform.rotozoom(self.basesurface, self.rotation, 1)
         self.rect = self.surface.get_rect()
         self.rect.centerx = self.position.x
         self.rect.centery = self.position.y
