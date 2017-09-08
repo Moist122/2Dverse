@@ -8,7 +8,7 @@ from ship import Ship
 import game_functions as gf
 from bullet import Bullet
 from mine import Mine
-
+t8uslod69;
 def run_game():
     # Initialize pygame and screen
     pygame.init()
