@@ -8,6 +8,7 @@ from ship import Ship
 import game_functions as gf
 from bullet import Bullet
 from mine import Mine
+from map import Map
 
 def run_game():
     # Initialize pygame and screen
@@ -22,13 +23,15 @@ def run_game():
     bullets = Group()
     enemies = Group()
     obstacles = Group()
-    mine = Mine(screen, Vector(40, 40), ship)
+    map = Map(ship, screen, bullets, enemies)
+    #enemies.add(Mine(screen, Vector(40, 40), ship))
+    map.load_map('start')
 
     # Main game loop
     while True:
 
-        gf.check_events(settings, screen, ship, bullets)
-        gf.update_objects(ship, bullets, screen, mine)
-        gf.draw_screen(settings, screen, ship, bullets, mine)
+        gf.check_events(settings, screen, ship, bullets, map)
+        gf.update_objects(ship, bullets, screen, enemies)
+        gf.draw_screen(settings, screen, ship, bullets, enemies)
 
 run_game()

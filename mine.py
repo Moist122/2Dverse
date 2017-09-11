@@ -1,8 +1,9 @@
 import pygame
+from enemy import Enemy
 from pygame.sprite import Sprite
 from os.path import join
 
-class Mine(Sprite):
+class Mine(Enemy):
 
     def __init__(self, screen, position, ship):
         '''Create mine in given place'''
@@ -62,3 +63,8 @@ class Mine(Sprite):
                     self.beep_on -= 1
                 else:
                     self.beep_on += 1
+    
+    def update(self):
+        '''Move and update cooldowns.'''
+        self.move()
+        self.cooldowns()

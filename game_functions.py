@@ -3,7 +3,7 @@ import sys
 
 from bullet import Bullet
 
-def check_events(settings, screen, ship, bullets):
+def check_events(settings, screen, ship, bullets, map):
     '''Check keyboard and mouse events'''
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -40,24 +40,24 @@ def check_keyup(event, settings, ship, bullets, screen):
         ship.shooting = False
 
 
-def draw_screen(settings, screen, ship, bullets, mine):
+def draw_screen(settings, screen, ship, bullets, enemies):
     '''Draw background and objects to the screen'''
     screen.fill(settings.background)
     for bullet in bullets.sprites():
         bullet.draw()
     ship.draw()
-    mine.draw()
+    for enemy in enemies.sprites():
+        enemy.draw()
     pygame.display.flip()
 
-def update_objects(ship, bullets, screen, mine):
+def update_objects(ship, bullets, screen, enemies):
     '''Move objects'''
     ship.update()
     ship.shoot(bullets)
     ship.move()
     ship.cooldowns()
     bullets.update()
-    mine.move()
-    mine.cooldowns()
+    enemies.update()
 
     # Remove bullets that left the screen
     for bullet in bullets.copy():
